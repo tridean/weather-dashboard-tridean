@@ -99,6 +99,10 @@ function createForecastCard(item) {
     const forecastDate = new Date(item.dt * 1000);
     const hour = forecastDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
+    // Extract humidity and wind speed
+    const humidity = item.main.humidity;
+    const windSpeed = item.wind.speed;
+
     // Convert temperature from Kelvin to Fahrenheit
     const temperatureKelvin = item.main.temp;
     const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9/5 + 32;
@@ -116,8 +120,10 @@ function createForecastCard(item) {
     const cardContent = `
         <h3>${hour}</h3>
         <p>${temperatureFahrenheit.toFixed(2)}°F</p>
-        <p>${capitalizedWeatherDescription}</p>`;
-    
+        <p>${capitalizedWeatherDescription}</p>
+        <p>${humidity}% Humidity</p>
+        <p>${windSpeed} m/s Wind speed</p>`;
+
     card.innerHTML = cardContent;
     card.appendChild(weatherIconElement);
 
