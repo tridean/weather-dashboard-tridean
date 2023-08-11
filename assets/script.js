@@ -22,6 +22,9 @@ function fetchCoordinates(cityName) {
             } else {
                 console.error('City not found');
             }
+
+            // Store the last searched city in localStorage
+            localStorage.setItem('lastSearchedCity', cityName);
         })
         .catch(error => {
             console.error('Error fetching coordinates:', error);
@@ -158,10 +161,16 @@ function getWeatherIconFilename(conditionCode) {
     return iconMappings[conditionCode] || '01d.png'; // You can set a default icon here
 }
 
+// Get the last searched city from localStorage
+const lastSearchedCity = localStorage.getItem('lastSearchedCity');
+
+// If there's a last searched city, fetch its weather forecast and display it
+if (lastSearchedCity) {
+    fetchCoordinates(lastSearchedCity);
+}
+
 // Add event listener to search button
 searchBtn.addEventListener('click', () => {
     const cityName = cityInput.value;
     fetchCoordinates(cityName);
 });
-
-// Function to update localStorage with the last searched city
