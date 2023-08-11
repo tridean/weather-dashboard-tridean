@@ -1,6 +1,14 @@
+// Api stuff
+
 const apiKey = '7555ce5a27fe25c1691ed0dfed7dfcd2';
 const geoApi = 'https://api.openweathermap.org/geo/1.0/direct';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast';
+
+// Get DOM elements
+const cityInput = document.getElementById('cityInput');
+const searchBtn = document.getElementById('searchBtn');
+
+// City coordinates
 
 function fetchCoordinates(cityName) {
     const geoUrl = `${geoApi}?q=${cityName}&limit=1&appid=${apiKey}`;
@@ -20,7 +28,8 @@ function fetchCoordinates(cityName) {
         });
 }
 
-// Helper function to generate formatted full date with ordinal suffix
+// Generate formatted full date
+
 function getFormattedFullDate(date) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const month = months[date.getMonth()];
@@ -119,25 +128,21 @@ function getWeatherIconFilename(conditionCode) {
         200: '11d.png', // Thunderstorm with light rain
         201: '11d.png', // Thunderstorm with rain
         202: '11d.png', // Thunderstorm with heavy rain
-        // ... other mappings for thunderstorm ...
 
         // Drizzle
         300: '09d.png', // Light intensity drizzle
         301: '09d.png', // Drizzle
         302: '09d.png', // Heavy intensity drizzle
-        // ... other mappings for drizzle ...
 
         // Rain
         500: '10d.png', // Light rain
         501: '10d.png', // Moderate rain
         502: '10d.png', // Heavy intensity rain
-        // ... other mappings for rain ...
-
+        
         // Snow
         600: '13d.png', // Light snow
         601: '13d.png', // Snow
         602: '13d.png', // Heavy snow
-        // ... other mappings for snow ...
 
         // Clear sky
         800: '01d.png', // Clear sky
@@ -153,20 +158,10 @@ function getWeatherIconFilename(conditionCode) {
     return iconMappings[conditionCode] || '01d.png'; // You can set a default icon here
 }
 
-// Get DOM elements
-const cityInput = document.getElementById('cityInput');
-const searchBtn = document.getElementById('searchBtn');
-
 // Add event listener to search button
 searchBtn.addEventListener('click', () => {
     const cityName = cityInput.value;
     fetchCoordinates(cityName);
-    // Call function to make API request
-    // Process the API response and update forecastContainer
-    // Update localStorage with the last searched city
 });
-
-// Check if there's a last searched city in localStorage
-// If yes, fetch its weather forecast and display on page load
 
 // Function to update localStorage with the last searched city
