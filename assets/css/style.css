@@ -100,7 +100,7 @@ main {
 
 .forecast-card p {
     font-size: 1rem;
-    margin: 0;
+    margin: 5px 0; /* Adjusted vertical spacing */
     color: #ccc;
 }
 

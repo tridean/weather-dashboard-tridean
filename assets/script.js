@@ -73,34 +73,38 @@ function fetchWeatherData(lat, lon) {
 }
 
 function createForecastCard(item) {
-
     // Get the weather condition code
     const weatherConditionCode = item.weather[0].id;
 
-    // Determine the weather icon class based on the condition code
+    // Determine the weather icon filename based on the condition code
     const weatherIconFilename = getWeatherIconFilename(weatherConditionCode);
 
-     // Create card elements and structure
-        const card = document.createElement('div');
-        card.classList.add('forecast-card');
+    // Create card elements and structure
+    const card = document.createElement('div');
+    card.classList.add('forecast-card');
 
     // Extract hour from timestamp
-        const forecastDate = new Date(item.dt * 1000);
-        const hour = forecastDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    
-     // Convert temperature from Kelvin to Fahrenheit
-        const temperatureKelvin = item.main.temp;
-        const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9/5 + 32;
+    const forecastDate = new Date(item.dt * 1000);
+    const hour = forecastDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+    // Convert temperature from Kelvin to Fahrenheit
+    const temperatureKelvin = item.main.temp;
+    const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9/5 + 32;
+
+    // Capitalize the first letter of the weather description
+    const weatherDescription = item.weather[0].description;
+    const capitalizedWeatherDescription = weatherDescription.charAt(0).toUpperCase() + weatherDescription.slice(1);
 
     // Create an image element for the weather icon
     const weatherIconElement = document.createElement('img');
     weatherIconElement.src = `https://openweathermap.org/img/wn/${weatherIconFilename}`;
     weatherIconElement.alt = 'Weather Icon';
-    
-     // Create card content using extracted data
-        const cardContent = `
-            <h3>${hour}</h3>
-            <p>Temperature: ${temperatureFahrenheit.toFixed(2)}°F</p>`;
+
+    // Create card content using extracted data
+    const cardContent = `
+        <h3>${hour}</h3>
+        <p>${temperatureFahrenheit.toFixed(2)}°F</p>
+        <p>${capitalizedWeatherDescription}</p>`;
     
     card.innerHTML = cardContent;
     card.appendChild(weatherIconElement);
