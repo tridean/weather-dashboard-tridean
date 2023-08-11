@@ -1,10 +1,10 @@
-# Weather Forecast App
+# Weather Dashboard App
 
 ![Weather Forecast App Screenshot](./assets/screenshot.png)
 
 ## Description
 
-The Weather Forecast App is a simple web application that allows users to search for weather forecasts for different cities around the world. The app displays the temperature, weather conditions, humidity, wind speed, and an icon representing the weather for the upcoming days.
+The Weather Dashboard App is a simple web application that allows users to search for weather forecasts for different cities around the world. The app displays the temperature, weather conditions, humidity, wind speed, and an icon representing the weather for the upcoming days.
 
 ## Features
 
