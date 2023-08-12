@@ -164,7 +164,7 @@ function getWeatherIconFilename(conditionCode) {
     };
 
     // Return the corresponding weather icon filename, or a default filename if not found
-    return iconMappings[conditionCode] || '01d.png'; // You can set a default icon here
+    return iconMappings[conditionCode] || '01d.png';
 }
 
 // Get the last searched city from localStorage
